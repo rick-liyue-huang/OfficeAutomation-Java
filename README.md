@@ -10,12 +10,12 @@ Here, I create one Office Automation online application by Maven, whose target i
 3. As web application, I use servlet 3.1.0 edition, and match with the maven setting;
 4. The application on under context of '/rick_oa';
 5. This project connect with MySQL that based on the Linux Centos 7, I will set MySQL configuration in 'mybatis-config.xml';
-6. 该项目采用MVC架构模式，webapp文件夹作为View，Model作为数据处理的数据库相关类，Controller作为View和Model的桥梁，用Servlet连接Model和View，这样便于分层开发，显示与数据解耦便于维护；The whole project is based on the current known MVC module, which means the following project developing structure:
+6. The whole project is based on the current known MVC module, which means the following project developing structure:
    ```sh
-      HTML(视图层View) - 
-      Servlet(控制层Conttroller) -
-      Service(业务逻辑层Model) - 
-      Mapper(数据持久层Model) - 
+      HTML(View) - 
+      Servlet(Conttroller) -
+      Service(Business Layer Model) - 
+      Mapper(Data Persistence Layer Model) - 
       MySQL(Database)
 7. The main dependencies includes mybatis@3.5.3, mysql-connector-java@8.0.25, junit@4.12, logback-classic@1.2.3 and com.alibaba;
 8. In order to make mybatis works, I create the configuration file of 'mybatis-config.xml';
@@ -25,9 +25,17 @@ Here, I create one Office Automation online application by Maven, whose target i
 
 ### Role Based Access Control in Project
 
-The core of RBAC is to bind the role with the accessed source, and the system User binds with the Role who has the right to access the responsive source, the basic structure is shown:
+The core of RBAC is to bind the role with the accessed source, and the system User binds with the Role who has the right to access the responsive source, and the basic structure is shown:
 <img src="./src/mdsource/rbac.png" alt="rbac sample">
 Here the promise decides the Role will be which kind of User or can access which Doc or source.
+
+1. I creat some tables under 'rick_oa' database;
+2. the 'sys_node' table means the system function definition;
+3. the 'sys_role' table means the role definition;
+4. the 'sys_user' table means the system users definition, which who can login this table.
+5. the 'sys_role_user' and 'sys_role_node' is used to match the role can can be who and can do what;
+
+
 
 
 
