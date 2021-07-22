@@ -35,6 +35,9 @@ Here the promise decides the Role will be which kind of User or can access which
 4. the 'sys_user' table means the system users definition, which who can login this table.
 5. the 'sys_role_user' and 'sys_role_node' is used to match the role can can be who and can do what;
 
+#### Using Element Plus to create Vue3 based frontEnd
+
+Create directory of "assets" under "webapp" to include the element-plus source code.
 
 
 
