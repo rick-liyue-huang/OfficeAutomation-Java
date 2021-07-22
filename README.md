@@ -26,9 +26,9 @@ Here, I create one Office Automation online application by Maven, whose target i
 ### Role Based Access Control in Project
 
 The core of RBAC is to bind the role with the accessed source, and the system User binds with the Role who has the right to access the responsive source, the basic structure is shown:
-![This is a alt text.](https://github.com/rick-liyue-huang/OfficeAutomation-Java/tree/main/src/mdsource/rbac.png "This is a sample image.")
+<img src="./src/mdsource/rbac.png" alt="rbac sample">
 Here the promise decides the Role will be which kind of User or can access which Doc or source.
-<img src="./src/mdsource/rbac.png">
+
 
 
 
