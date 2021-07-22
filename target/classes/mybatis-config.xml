@@ -9,11 +9,15 @@
   <environments default="dev">
     <environment id="dev">
       <transactionManager type="JDBC" />
-      <dataSource type="POOLED">
-        <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+<!--      <dataSource type="POOLED">-->
+<!--      link to 'DruidDataSourceFactory' in DruidDataSourceFactory.java -->
+        <dataSource type="com.example.oa.datasource.DruidDataSourceFactory">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://192.168.0.66:3306/rick_oa?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Australia/Sydney&amp;allowPublicKeyRetrieval=true" />
         <property name="username" value="root" />
         <property name="password" value="abc123456" />
+        <property name="initialSize" value="10" />
+        <property name="maxActive" value="20" />
       </dataSource>
     </environment>
   </environments>
