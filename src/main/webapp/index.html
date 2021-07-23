@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Office Automation</title>
+  <link rel="stylesheet" href="./assets/element-plus/index.css">
+  <script src="./assets/vue/vue.global.js"></script>
+  <script src="./assets/element-plus/index.full.js"></script>
+  <script src="./assets/axios/axios.js"></script>
+  <style>
+    .el-header {
+      background-color: rgb(238, 241, 246);
+      color: #333;
+      line-height: 60px;
+    }
+    html,body,#app {
+      padding: 0px;
+      margin: 0px;
+      height: 100%;
+      max-height: 100%;
+    }
+    .el-container {
+      height: 100%;
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <el-container class="el-container">
+      <el-header class="el-header">
+        <el-row>
+          <el-col :span="12">
+            <span style="font-weight: bolder; font-size: 18px; color: darkcyan">Office Automation</span>
+          </el-col>
+          <el-col :span="12" style="text-align: right">
+            <el-dropdown>
+                <span style="margin-right: 15px">
+                  {{employee.name}}:{{employee.title}}
+                </span>
+              </i>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item v-on:click="logout">Logout</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </el-col>
+        </el-row>
+      </el-header>
+      <el-container>
+        <el-aside width="200px" style="max-height: 100%; background-color: rgb(238, 241, 246)">
+<!--          default to expand the first module funcions-->
+          <el-menu :default-openeds="['0']">
+            <template v-for="(n, idx) in nodeList">
+              <el-submenu :index="idx.toString()">
+                <template #title>
+                  {{n.node.nodeName}}
+                </template>
+                <template v-for="child in n.children">
+                  <el-menu-item :index="child.nodeId.toString()" v-on:click="showPage(child.url)">
+                    {{child.nodeName}}
+                  </el-menu-item>
+                </template>
+              </el-submenu>
+            </template>
+          </el-menu>
+        </el-aside>
+        <el-main>
+          <iframe id="main" name="main" src="" frameborder="0" width="200px" style=";max-height: 100%;"></iframe>
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
+  <script>
+    const Main = {
+      data() {
+        return {
+          nodeList: []
+          ,employee: {}
+        }
+      }
+      ,mounted() {
+        const objApp = this;
+        const uid = sessionStorage.uid
+        const eid = sessionStorage.eid;
+        axios.get("/rick_oa/api/user_info?uid="+uid+"&eid="+eid)
+          .then(res => {
+            const jsonString = res.data;
+            // console.info(jsonString);
+            jsonString.data.nodeList.forEach(item => {
+              objApp.nodeList.push(item);
+            })
+            console.info(objApp.nodeList);
+            objApp.employee = jsonString.data.employee;
+          });
+      }
+      ,methods: {
+        showPage(url) {
+          document.getElementById("main").src = url;
+        }
+        ,logout() {
+          window.location.href = "/rick_oa/login.html"
+          sessionStorage.clear();
+        }
+      }
+    };
+    const app = Vue.createApp(Main);
+    app.use(ElementPlus);
+    app.mount("#app");
+  </script>
+</body>
+</html>

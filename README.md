@@ -53,5 +53,16 @@ After complete the Model coding, I will use Servlet to deal with the Controller 
 
 Here I cannot show the password in plant format, and I need to encrypt the password by 'Apache Commons Codec', which insert it in 'porm.xml'.
 
+#### Deal with RBAC functions in backend
+
+Same as I deal with login functions, I will do: 
+1. I create the rbac.xml to execute the sql statement;
+2. Create the responsive entity of 'RBAC' and 'Employee' classes;
+3. Use business layer of 'RbacMapper' and 'EmployeeMapper' to connect with responsive xxx.xml;
+4. Create persistence layer of 'RbacService' and 'EmployeeService' to decouple the java code with database execute;
+5. All the service are controlled in 'LoginServlet' and 'UserInfoServlet'.
+
+
+
 
 

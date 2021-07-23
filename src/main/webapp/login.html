@@ -47,7 +47,7 @@
       return {
         form: {
           username: ''
-          , password: '456'
+          , password: ''
         }
         // validation rules
         , rules: {
@@ -77,6 +77,10 @@
                 console.log(res);
                 const dataJson = res.data;
                 if (dataJson.code === '0') {
+                //  after login successfully
+                //  store the key info in sessionStorage
+                  sessionStorage.uid = dataJson.data.user.userId;
+                  sessionStorage.eid = dataJson.data.user.employeeId;
                   window.location.href="/rick_oa/index.html"
                 } else {
                   $message.error({message: dataJson.message, offset: 100});
