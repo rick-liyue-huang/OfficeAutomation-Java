@@ -37,9 +37,17 @@ Here the promise decides the Role will be which kind of User or can access which
 
 #### Using Element Plus to create Vue3 based frontEnd
 
-Create directory of "assets" under "webapp" to include the element-plus source code.
+Create directory of "assets" under "webapp" to include the element-plus source code. In this project, I like to import all the predefined min js and css files in html file, click [here](https://element-plus.org/#/en-US) to know about 'Element-Plus' frameworks.
 
+#### Deal with login functions in backend
 
+This project is based on MVC frameworks, where model and view all can be identified by Mybatis frameworks: 
+ 
+1. Here we know that the 'resources/mappers/xxx.xml' use to control the mysql statement, which is same as the real sql statement;
+2. The '/entity/xxxClass.java' used to match the responsive MySQL table with column name, 
+3. The '/mapper/xxxMapper' will deal with the responsive xxx.xml file and transfer the MySQL statement to entity;
+4. All the java business coding put in the 'service/xxxMapper', where we can deal with the provided entity;
+5. In order to validate the result, we also can add test files;
 
 
 
