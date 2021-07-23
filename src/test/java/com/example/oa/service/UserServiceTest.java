@@ -12,14 +12,10 @@ import static org.junit.Assert.*;
 public class UserServiceTest {
 
 	private UserService userService = new UserService();
-	@Test
-	public void checkLogin() {
-		User user = userService.checkLogin("test", "test");
-		System.out.println(user);
-	}
+
 	@Test
 	public void checkLogin1() {
-		User user = userService.checkLogin("test", "test1");
+		User user = userService.checkLogin("m8", "test");
 		System.out.println(user);
 	}
 }

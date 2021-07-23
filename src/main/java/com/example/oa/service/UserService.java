@@ -3,6 +3,7 @@ package com.example.oa.service;
 import com.example.oa.entity.User;
 import com.example.oa.mapper.UserMapper;
 import com.example.oa.service.exception.LoginException;
+import com.example.oa.utils.MD5Utils;
 
 
 /**
@@ -23,7 +24,9 @@ public class UserService {
 		if(user == null) {
 			throw new LoginException("username is not exist");
 		}
-		if (!password.equals(user.getPassword())) {
+//		using md5 to encrypt the password.
+		String md5Pwd = MD5Utils.md5Digest(password, user.getSalt());
+		if (!md5Pwd.equals(user.getPassword())) {
 			throw new LoginException("password is not corrected");
 		}
 		return user;

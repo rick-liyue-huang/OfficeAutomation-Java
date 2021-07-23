@@ -51,7 +51,7 @@ This project is based on MVC frameworks, where model and view all can be identif
 
 After complete the Model coding, I will use Servlet to deal with the Controller part. Based on the diferent interface to produce the different response and use 'Jackson' to get the json string displayed on page.
 
-
+Here I cannot show the password in plant format, and I need to encrypt the password by 'Apache Commons Codec', which insert it in 'porm.xml'.
 
 
 

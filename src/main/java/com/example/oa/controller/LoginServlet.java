@@ -35,6 +35,9 @@ public class LoginServlet extends HttpServlet {
 		ResponseUtils resp = null;
 		try {
 			User user = userService.checkLogin(username, password);
+//			set user to null to prevent from glance by others;
+			user.setPassword(null);
+			user.setSalt(null);
 			resp = new ResponseUtils().put("user", user);
 		} catch (Exception e) {
 //			if get exception, print it out.
