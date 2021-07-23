@@ -21,7 +21,7 @@ public class UserService {
 	public User checkLogin(String username, String password) {
 		User user = userMapper.selectByUsername(username);
 		if(user == null) {
-			throw new LoginException("username is null");
+			throw new LoginException("username is not exist");
 		}
 		if (!password.equals(user.getPassword())) {
 			throw new LoginException("password is not corrected");
