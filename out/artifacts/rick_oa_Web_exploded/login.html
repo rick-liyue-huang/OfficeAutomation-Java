@@ -65,7 +65,23 @@
         const form = this.$refs[formName];
         form.validate(valid => {
           if (valid) {
-            console.log("valid succefully, and submit");
+            console.log("valid succefully, and ready to submit");
+            const form = this.form;
+            const params = new URLSearchParams();
+            // Element-plus message component
+            const $message = this.$message;
+            params.append("username", form.username);
+            params.append("password", form.password);
+            axios.post("/rick_oa/api/login", params, {})
+              .then(res => {
+                console.log(res);
+                const dataJson = res.data;
+                if (dataJson.code === '0') {
+                  window.location.href="/rick_oa/index.html"
+                } else {
+                  $message.error({message: dataJson.message, offset: 100});
+                }
+              })
           }
         });
       }
