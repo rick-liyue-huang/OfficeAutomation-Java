@@ -49,6 +49,7 @@ This project is based on MVC frameworks, where model and view all can be identif
 4. All the java business coding put in the 'service/xxxMapper', where we can deal with the provided entity;
 5. In order to validate the result, we also can add test files;
 
+After complete the Model coding, I will use Servlet to deal with the Control part.
 
 
 
