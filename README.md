@@ -67,7 +67,10 @@ Same as I deal with login functions, I will do:
 After create the employee and responsive forms, mappers and services, I will focus on how to manage the vacation process. This is one main kind of office-automation task. During this process, one employee, as the applicant, will apply the vacation to hir higher level, the manager in his department, where the manager needs to approve and then send it to boss, one last process auditor. If the manager reject the application of vacation, this application process will abort and do not send to boss.
 <img src="./src/mdsource/oa-process.png" alt="oa_process sample">
 
-In order to complete the whole process, 
+In order to complete the whole process, I firstly complete the persistence layer, including that create the 'vacation_form.html', 'notice.html' and 'audit.html' to display the vaction process; 'vacation_form.xml', 'process_flow.xml' and 'notice.xml' to execute the sql statement; 'VacationForm', 'ProcessFlow' and 'Notice' entities are the responsive class to the database tables; the interfaces of 'VacationFormMapper', 'NoticeMapper' and  'ProcessFlowMapper' are the core parts of persistence layer, through which I test the xxxMapper interface to connect database.
+
+
+
 
 
 
