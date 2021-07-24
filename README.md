@@ -62,7 +62,12 @@ Same as I deal with login functions, I will do:
 4. Create persistence layer of 'RbacService' and 'EmployeeService' to decouple the java code with database execute;
 5. All the service are controlled in 'LoginServlet' and 'UserInfoServlet'.
 
+#### Introduce the vacation process.
 
+After create the employee and responsive forms, mappers and services, I will focus on how to manage the vacation process. This is one main kind of office-automation task. During this process, one employee, as the applicant, will apply the vacation to hir higher level, the manager in his department, where the manager needs to approve and then send it to boss, one last process auditor. If the manager reject the application of vacation, this application process will abort and do not send to boss.
+<img src="./src/mdsource/oa_process.png" alt="oa_process sample">
+
+In order to complete the whole process, 
 
 
 

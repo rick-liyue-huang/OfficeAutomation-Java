@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vacation Form</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" type="text/css" href="./assets/element-plus/index.css">
+    <!-- 引入组件库 -->
+    <script src="./assets/vue/vue.global.js"></script>
+    <script src="./assets/element-plus/index.full.js"></script>
+    <script src="./assets/element-plus/locale/zh-cn.js"></script>
+    <script src="./assets/axios/axios.js"></script>
+
+    <style>
+        .el-form {
+            border: 1px solid #DCDFE6;
+            width: 600px;
+            margin: 180px auto;
+            padding: 35px 35px 15px 35px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            box-shadow: 0 0 25px #909399;
+        }
+    </style>
+
+</head>
+<body>
+<div id="app">
+    <el-form ref="leaveForm" :model="form" :rules="rules" label-width="80px">
+        <el-descriptions title="Vacation Form" :column="1" border>
+            <el-descriptions-item label="department">research department</el-descriptions-item>
+            <el-descriptions-item label="applicant">Claire[Advanced_Research_Engineer]
+            </el-descriptions-item>
+            <el-descriptions-item label="vacation type">
+
+                <el-select v-model="form.formType" style="width: 100%">
+                    <el-option label="type 1" value="1"></el-option>
+                    <el-option label="type 2" value="2"></el-option>
+                    <el-option label="type 3" value="3"></el-option>
+                    <el-option label="type 4" value="4"></el-option>
+                    <el-option label="type 5" value="5"></el-option>
+                    <el-option label="type 6" value="6"></el-option>
+                </el-select>
+
+            </el-descriptions-item>
+            <el-descriptions-item label="vacation term">
+                <el-form-item prop="timeRange" label-width="0px">
+                    <div class="block">
+                        <el-date-picker
+                                v-model="form.timeRange"
+                                type="datetimerange"
+                                range-separator="to"
+                                start-placeholder="start time"
+                                end-placeholder="end time">
+                        </el-date-picker>
+                    </div>
+                </el-form-item>
+            </el-descriptions-item>
+            <el-descriptions-item label="vacation reason">
+                <el-form-item prop="reason" label-width="0px">
+                    <el-input type="text" placeholder="input the reason" v-model="form.reason"/>
+                </el-form-item>
+            </el-descriptions-item>
+
+        </el-descriptions>
+        <div style="text-align: center;padding-top: 30px">
+            <el-button type="primary" >apply now</el-button>
+        </div>
+    </el-form>
+
+</div>
+
+<script>
+
+    var Main = {
+        data() {
+            return {
+                form: {
+                    formType: "1",
+                    timeRange: "",
+                    startTime: "",
+                    endTime: "",
+                    reason: "",
+                    eid: "",
+                },
+                // 表单验证，需要在 el-form-item 元素中增加 prop 属性
+                rules: {
+                    timeRange: [
+                        {required: true, message: 'select vacaton start time', trigger: 'blur'}
+                    ],
+                    reason: [
+                        {required: true, message: 'input vacation reason', trigger: 'blur'}
+                    ]
+                }
+            }
+        }
+    };
+    ElementPlus.locale(ElementPlus.lang.zhCn);
+    const app = Vue.createApp(Main);
+    app.use(ElementPlus, ElementPlus.lang.zhCn);
+    app.mount("#app")
+</script>
+</body>
+</html>

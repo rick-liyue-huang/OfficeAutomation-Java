@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" type="text/css" href="./assets/element-plus/index.css">
+    <!-- 引入组件库 -->
+    <script src="./assets/vue/vue.global.js"></script>
+    <script src="./assets/element-plus/index.full.js"></script>
+    <script src="./assets/axios/axios.js"></script>
+    <style >
+
+        .info .el-col,.info .el-select ,.info .el-input{
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h2>Vacation Audition</h2>
+    <el-table
+            ref="singleTable"
+            :data="tableData"
+            highlight-current-row
+            @current-change="handleCurrentChange"
+            style="width: 100%">
+        <el-table-column
+                type="index"
+                width="50">
+        </el-table-column>
+        <el-table-column
+                property="ctime"
+                label="apply time"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                property="ftype"
+                label="type"
+                width="120">
+        </el-table-column>
+        <el-table-column
+                property="department_name"
+                label="department"
+                width="120">
+        </el-table-column>
+        <el-table-column
+                property="name"
+                label="employee"
+                width="120">
+        </el-table-column>
+        <el-table-column
+                property="stime"
+                label="start_time"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                property="etime"
+                label="end_time"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                property="reason"
+                label="vacation_reason">
+        </el-table-column>
+    </el-table>
+
+    <el-dialog title="Vacation Audition" v-model="dialogFormVisible" width="500px" center>
+        <el-descriptions  :column="2" border>
+            <el-descriptions-item label="department">{{currentRow.department_name}}</el-descriptions-item>
+            <el-descriptions-item label="name">{{currentRow.name}}</el-descriptions-item>
+            <el-descriptions-item label="start_time" >{{currentRow.stime}}</el-descriptions-item>
+            <el-descriptions-item label="end_time" >{{currentRow.etime}}</el-descriptions-item>
+            <el-descriptions-item label="vacation_reason" :span="2">
+                {{currentRow.reason}}
+            </el-descriptions-item>
+        </el-descriptions>
+
+
+        <div class="info" >
+            <el-form :model="form" ref="auditForm">
+                <el-select v-model="form.result" placeholder="Is Approvel?" style="width: 100%">
+                    <el-option label="approved" value="approved"></el-option>
+                    <el-option label="refused" value="refused"></el-option>
+                </el-select>
+                <el-input v-model="form.reason" placeholder="input the audition comments" autocomplete="off"></el-input>
+            </el-form>
+            <span class="dialog-footer">
+              <el-button type="primary" v-on:click="onSubmit('auditForm')" style="width: 100%">Confirm Submit</el-button>
+            </span>
+        </div>
+    </el-dialog>
+</div>
+
+<script>
+    function formatDate(time){
+        var newDate = new Date(time);
+        return newDate.getFullYear() + "-" +
+            (newDate.getMonth() + 1) + "-" + newDate.getDate()
+            + " " + newDate.getHours() + "时";
+    }
+
+    var Main = {
+        data() {
+            return {
+                dialogFormVisible: false,
+                form: {
+                    result:"approved",
+                    reason:""
+                },
+                formLabelWidth: '120px',
+                tableData: [{
+                    ctime:"2021-5-29 18时",
+                    ftype:"special type",
+                    stime:"2021-5-31 0",
+                    etime:"2021-6-3 0",
+                    department_name:"research department",
+                    name:"AJ",
+                    reason:"test data"
+                }],
+                currentRow: null
+            }
+        }
+        ,methods: {
+            handleCurrentChange(val) {
+                this.currentRow = val;
+                console.info(val);
+                this.dialogFormVisible = true;
+            }
+        }
+    };
+    const app = Vue.createApp(Main);
+    app.use(ElementPlus);
+    app.mount("#app")
+</script>
+
+</body>
+</html>

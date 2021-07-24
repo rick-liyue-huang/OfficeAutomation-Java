@@ -36,7 +36,7 @@ CREATE TABLE `sys_node`  (
 -- ----------------------------
 INSERT INTO `sys_node` VALUES (1, 1, 'administrative_approval', NULL, 1000000, NULL);
 INSERT INTO `sys_node` VALUES (2, 2, 'info_notice', '/notice.html', 1000001, 1);
-INSERT INTO `sys_node` VALUES (3, 2, 'leave_form', '/leave_form.html', 1000002, 1);
+INSERT INTO `sys_node` VALUES (3, 2, 'vacation_form', '/vacation_form.html', 1000002, 1);
 INSERT INTO `sys_node` VALUES (4, 2, 'vacation_audit', '/audit.html', 1000003, 1);
 
 -- ----------------------------
