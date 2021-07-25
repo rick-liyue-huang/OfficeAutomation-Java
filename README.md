@@ -70,6 +70,12 @@ After create the employee and responsive forms, mappers and services, I will foc
 In order to complete the whole process, I firstly complete the persistence layer, including that create the 'vacation_form.html', 'notice.html' and 'audit.html' to display the vaction process; 'vacation_form.xml', 'process_flow.xml' and 'notice.xml' to execute the sql statement; 'VacationForm', 'ProcessFlow' and 'Notice' entities are the responsive class to the database tables; the interfaces of 'VacationFormMapper', 'NoticeMapper' and  'ProcessFlowMapper' are the core parts of persistence layer, through which I test the xxxMapper interface to connect database.
 
 
+On the business layer, I create some services, including 'VacationFormSerice' and 'EmployeeService', in which I code to deal with the exact vaction process based on the different employee level:
+1. if the applicant is level 6 or less and vacation term bigger than 72 hours, it will create one vacation form and three vacation process flows;
+2. if the applicant is level 6 or less and vacation term smaller than 72 hours, it will create one vacation form and two vacation process flows;
+3. if the applicant is level 7,  it will create one vacation form and two vacation process flows;
+4. the applicant is level 8,  it will create one vacation form and two vacation process flow, including one auto approved result flow.
+
 
 
 
