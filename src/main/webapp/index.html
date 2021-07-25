@@ -67,7 +67,7 @@
           </el-menu>
         </el-aside>
         <el-main>
-          <iframe id="main" name="main" src="" frameborder="0" width="200px" style=";max-height: 100%;"></iframe>
+          <iframe id="main" name="main" src="" frameborder="0" style="width:100%;height:95%;border: 0px"></iframe>
         </el-main>
       </el-container>
     </el-container>
@@ -87,7 +87,7 @@
         axios.get("/rick_oa/api/user_info?uid="+uid+"&eid="+eid)
           .then(res => {
             const jsonString = res.data;
-            // console.info(jsonString);
+            console.info('jsonString', jsonString);
             jsonString.data.nodeList.forEach(item => {
               objApp.nodeList.push(item);
             })
@@ -97,7 +97,7 @@
       }
       ,methods: {
         showPage(url) {
-          document.getElementById("main").src = url;
+          document.getElementById("main").src = '/rick_oa' +  url;
         }
         ,logout() {
           window.location.href = "/rick_oa/login.html"

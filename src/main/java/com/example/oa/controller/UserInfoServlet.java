@@ -1,7 +1,9 @@
 package com.example.oa.controller;
 
+import com.example.oa.entity.Department;
 import com.example.oa.entity.Employee;
 import com.example.oa.entity.Node;
+import com.example.oa.service.DepartmentService;
 import com.example.oa.service.EmployeeService;
 import com.example.oa.service.RbacService;
 import com.example.oa.utils.ResponseUtils;
@@ -22,6 +24,7 @@ public class UserInfoServlet extends HttpServlet {
   private RbacService rbacService = new RbacService();
 //  get the employee info
   private EmployeeService employeeService = new EmployeeService();
+  private DepartmentService departmentService = new DepartmentService();
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		get the user id
@@ -48,9 +51,12 @@ public class UserInfoServlet extends HttpServlet {
           }
       }
 			Employee employee = employeeService.selectById(Long.parseLong(eid));
+      Department department = departmentService.selectById(employee.getDepartmentId());
       String string = new ResponseUtils().
 		      put("nodeList", treeList).
-		      put("employee", employee).toJsonString();
+		      put("employee", employee).
+		      put("department", department).
+		      toJsonString();
 
       response.setContentType("application/json;charset=utf-8");
       response.getWriter().println(string);

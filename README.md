@@ -76,7 +76,5 @@ On the business layer, I create some services, including 'VacationFormSerice' an
 3. if the applicant is level 7,  it will create one vacation form and two vacation process flows;
 4. the applicant is level 8,  it will create one vacation form and two vacation process flow, including one auto approved result flow.
 
-
-
-
+For the controller, I deal with the 'VacationFormController', in which it is used servlet to get the api path, and let the front-end view to get the responsive servlet and return the view.
 

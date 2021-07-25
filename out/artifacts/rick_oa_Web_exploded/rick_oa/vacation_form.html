@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Vacation Form</title>
     <!-- 引入样式 -->
-    <link rel="stylesheet" type="text/css" href="assets/element-plus/index.css">
+    <link rel="stylesheet" type="text/css" href="../assets/element-plus/index.css">
     <!-- 引入组件库 -->
-    <script src="assets/vue/vue.global.js"></script>
-    <script src="assets/element-plus/index.full.js"></script>
-    <script src="assets/element-plus/locale/zh-cn.js"></script>
-    <script src="assets/axios/axios.js"></script>
+    <script src="../assets/vue/vue.global.js"></script>
+    <script src="../assets/element-plus/index.full.js"></script>
+    <script src="../assets/element-plus/locale/zh-cn.js"></script>
+    <script src="../assets/axios/axios.js"></script>
 
     <style>
         .el-form {
@@ -27,7 +27,7 @@
 </head>
 <body>
 <div id="app">
-    <el-form ref="vacationForm" :model="form" :rules="rules" label-width="80px">
+    <el-form ref="leaveForm" :model="form" :rules="rules" label-width="80px">
         <el-descriptions title="Vacation Form" :column="1" border>
             <el-descriptions-item label="department">{{department.departmentName}}</el-descriptions-item>
             <el-descriptions-item label="applicant">{{employee.name}}-{{employee.title}}
@@ -52,7 +52,7 @@
                                 type="datetimerange"
                                 range-separator="to"
                                 start-placeholder="start time"
-                                end-placeholder="end time" v-on:change="changeTimeRange">
+                                end-placeholder="end time">
                         </el-date-picker>
                     </div>
                 </el-form-item>
@@ -65,7 +65,7 @@
 
         </el-descriptions>
         <div style="text-align: center;padding-top: 30px">
-            <el-button type="primary" v-on:click="onSubmit('vacationForm')" >apply now</el-button>
+            <el-button type="primary" >apply now</el-button>
         </div>
     </el-form>
 
@@ -97,43 +97,6 @@
                 }
             }
         }
-        ,methods: {
-        changeTimeRange: function () {
-          console.log(this.form.timeRange);
-          this.form.startTime = this.form.timeRange[0].getTime();
-          this.form.endTime = this.form.timeRange[1].getTime();
-        }
-        ,onSubmit(formName) {
-          const objApp = this;
-          const formData = this.form;
-          const $message = this.$message;
-          this.$refs[formName].validate(function (valid) {
-            if (valid) {
-              const params = new URLSearchParams();
-              params.append("formType", formData.formType);
-              params.append("startTime", formData.startTime);
-              params.append("endTime", formData.endTime);
-              params.append("reason", formData.reason);
-              params.append("eid", sessionStorage.eid);
-              axios.post("/rick_oa/api/vacation_form/create", params)
-                .then(res => {
-                  console.log('res: ', res);
-                //  display the form
-                  const json = res.data;
-                  if (json.code === '0') {
-                    objApp.$alert('form submitted!', {
-                      callback: function () {
-                        window.location.href = "/rick_oa/notice.html"
-                      }
-                    });
-                  } else {
-                    $message.error({message: json.message, offset: 200});
-                  }
-                });
-            }
-          })
-        }
-      }
         ,mounted() {
           const objApp = this;
           axios.get("/rick_oa/api/user_info?uid=" + sessionStorage.uid + "&eid=" + sessionStorage.eid)
